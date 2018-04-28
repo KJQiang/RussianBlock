@@ -10,6 +10,7 @@ public class Row { //旋转模块
 	}
 	private void getPoint() {
 		int i,j,js = 0;
+		js = 0;
 		for(i=0;i<15;i++) {
 			for(j=0;j<25;j++) {
 				if(b[i][j]>0) {
@@ -33,6 +34,12 @@ public class Row { //旋转模块
 			points.get(i).setY(i,tempx);
 		}
 	}
+	private void clear() { //清理点集
+		int i;
+		for(i=0;i<4;i++) {
+			points.remove(i);
+		}
+	}
 	public void rowl() {//主方法
 		getPoint();
 		change();
@@ -48,5 +55,6 @@ public class Row { //旋转模块
 		for(i=0;i<4;i++) {
 			b[points.get(i).getX(i)+i1][points.get(i).getY(i)+j1] = color;
 		}
+		//clear();
 	}
 }

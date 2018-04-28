@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import gamePanel.*;
+import achievement.*;
 import resource.*;
 public class CreateMenu {
 	static ImageIcon pic1 = new ImageIcon("/Users/qiangkejia/desktop/Study/code/icons/RussianBlock01.jpg");
@@ -21,6 +22,7 @@ public class CreateMenu {
 	public static ButtonGroup spgroup = new ButtonGroup();
 	public static JPanel menupanel = new JPanel();//主菜单面板
 	public static JFrame menuwindow = new JFrame("Russian Blocks");
+	public static boolean achb = true;
 //-----------------------------------主类公共对象--------------------------------------	
 	public static void main(String[] args) { //建立主菜单窗口
 		menuwindow.setSize(500, 640);
@@ -58,10 +60,24 @@ public class CreateMenu {
 		thispanel.add(sp2);
 		thispanel.add(sp3);
 		//选择游戏速度
+		acheiveButton();
+		//成就按钮
+	}
+	public static void acheiveButton() {
+		JButton ach = new JButton("历史分数");
+		ach.setBounds(282, 361, 71, 40);
+		menupanel.add(ach);
+		ach.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new RemovePanel(menupanel).ClearPanel();
+				new AcheivePanel(menupanel,achb).createAch();
+				achb = false;
+			}
+		});
 	}
 	public static void startButton(JPanel thispanel) { //开始按钮 储存初始化数据并清空面板
 		JButton sta = new JButton("Start!");
-		sta.setBounds(237, 374, 60, 40);
+		sta.setBounds(171, 361, 60, 40);
 		thispanel.add(sta);
 		sta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

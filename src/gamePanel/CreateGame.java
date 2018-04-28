@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import achievement.AcheivePanel;
+import achievement.Users;
 import resource.*;
 import menu.*;
 public class CreateGame extends CreateMenu {
@@ -45,11 +47,22 @@ public class CreateGame extends CreateMenu {
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Datas.ex = false;
+				ach();
+				 try {
+						Thread.sleep(600);
+					} catch (InterruptedException e1) {
+						System.out.print("error");
+						e1.printStackTrace();
+					}//延时
 				RemovePanel re_game = new RemovePanel(gamePanel);
 				re_game.ClearPanel();
 				createMenu(gamePanel);
 				startButton(gamePanel);
 			}
 		});
+	}
+	public void ach() {//写入成就
+		Users u = new Users(Datas.name, Datas.sc);
+		AcheivePanel.table.add(u);
 	}
 }
