@@ -22,6 +22,7 @@ import menu.RemovePanel;
 public class AcheivePanel extends CreateMenu { //记分板类
 	JPanel thispanel = new JPanel();
 	JButton back = new JButton("Back");//返回主菜单按钮
+	JButton clear = new JButton("Clear");//清空信息
 	public static ArrayList<Users> table = new ArrayList<Users>();
 	JLabel topic = new JLabel("挑战者：                他获得了：");
 	boolean bj;
@@ -40,6 +41,7 @@ public class AcheivePanel extends CreateMenu { //记分板类
 		bj = false;
 		sort();
 		backbutton();
+		clearbutton();
 		printf();
 	}
 	
@@ -59,7 +61,7 @@ public class AcheivePanel extends CreateMenu { //记分板类
 			}
 		}//按分数排序
 		if(table.size()>6) {
-			for(i=6;i<table.size();i++) {
+			for(i=table.size()-1;i>=6;i--) {
 				table.remove(i);
 			}
 		}//删除第八名以后的信息
@@ -124,6 +126,20 @@ public class AcheivePanel extends CreateMenu { //记分板类
 				startButton(thispanel);
 			}
 		});
+	}
+	private void clearbutton() {//清空成就信息
+		clear.setBounds(210, 80, 80, 40);
+		thispanel.add(clear);
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i;
+				for(i=table.size()-1;i>=0;i--) {
+					table.remove(i);
+				}
+			}
+		});
+		thispanel.validate();
+		thispanel.repaint();
 	}
 	private void printf() { //打印
 		int i;
